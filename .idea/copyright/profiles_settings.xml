@@ -1,0 +1,8 @@
+<component name="CopyrightManager">
+  <settings>
+    <LanguageOptions name="Kotlin" />
+    <LanguageOptions name="XML">
+      <option name="prefixLines" value="false" />
+    </LanguageOptions>
+  </settings>
+</component>
