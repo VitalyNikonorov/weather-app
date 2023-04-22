@@ -2,7 +2,6 @@ package net.nikonorov.weather.location
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import net.nikonorov.weather.*
 import net.nikonorov.weather.presentation.location.LocationItemMapper
@@ -21,7 +20,7 @@ class LocationSelectionViewModelImpl(delegate: LocationSelectionViewModelDelegat
         override fun <T : ViewModel> create(
             modelClass: Class<T>
         ): T {
-            val repo = LocationRepositoryImpl(Dispatchers.IO, LocationDataSourceImpl())
+            val repo = LocationRepositoryImpl(AppDispatchers.IO, LocationDataSourceImpl())
             val mapper = LocationItemMapper()
             return LocationSelectionViewModelImpl(
                 LocationSelectionViewModelDelegate(MainScope(), repo, mapper)
