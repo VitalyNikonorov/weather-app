@@ -22,13 +22,13 @@ class ForecastViewModelImpl(delegate: ForecastViewModelDelegate) : ViewModel(),
             modelClass: Class<T>
         ): T {
             val weatherRepository = WeatherRepositoryImpl(
-                ioDispatcher = Dispatchers.IO,
+                ioDispatcher = AppDispatchers.IO,
                 openMeteoApi = RetrofitHelper.getInstance()
                     .create(OpenMeteoApi::class.java),
                 dataMapper = ForecastDataMapper()
             )
             val locationRepository =
-                LocationRepositoryImpl(Dispatchers.IO, LocationDataSourceImpl())
+                LocationRepositoryImpl(AppDispatchers.IO, LocationDataSourceImpl())
             val uiStateMapper = ForecastUiStateMapper(WeatherConditionNameMapper())
             return ForecastViewModelImpl(
                 ForecastViewModelDelegate(weatherRepository, locationRepository, uiStateMapper)

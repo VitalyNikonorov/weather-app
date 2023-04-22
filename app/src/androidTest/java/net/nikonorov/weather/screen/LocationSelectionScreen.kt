@@ -1,4 +1,4 @@
-package net.nikonorov.weather
+package net.nikonorov.weather.screen
 
 import android.view.View
 import io.github.kakaocup.kakao.common.views.KView
@@ -6,6 +6,7 @@ import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.screen.Screen
 import io.github.kakaocup.kakao.text.KTextView
+import net.nikonorov.weather.R
 import org.hamcrest.Matcher
 
 class LocationSelectionScreen : Screen<LocationSelectionScreen>() {
@@ -13,7 +14,7 @@ class LocationSelectionScreen : Screen<LocationSelectionScreen>() {
     val locationsList =
         KRecyclerView(
             builder = { withId(R.id.recycler_view) },
-            itemTypeBuilder = { itemType(::LocationItem) }
+            itemTypeBuilder = { itemType(LocationSelectionScreen::LocationItem) }
         )
 
     class LocationItem(parent: Matcher<View>) : KRecyclerItem<LocationItem>(parent) {
