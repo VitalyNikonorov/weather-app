@@ -11,9 +11,11 @@ java {
 dependencies {
     implementation project(":data")
     implementation project(":domain")
+    implementation project(":network")
     implementation project(":presentation")
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
+    implementation 'com.google.code.gson:gson:2.10'
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1"
     implementation 'junit:junit:4.13.2'

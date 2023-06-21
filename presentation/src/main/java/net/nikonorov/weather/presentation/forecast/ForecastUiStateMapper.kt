@@ -3,15 +3,19 @@ package net.nikonorov.weather.presentation.forecast
 import net.nikonorov.weather.model.WeatherData
 import net.nikonorov.weather.resources.StringWrapper
 import net.nikonorov.weather.resources.Strings
+import java.time.ZoneId
 import java.time.ZonedDateTime
 
 /**
  * Mapper class of the Forecast Ui State. Domain -> Ui
  */
-class ForecastUiStateMapper(private val conditionNameMapper: WeatherConditionNameMapper) {
+class ForecastUiStateMapper(
+    private val conditionNameMapper: WeatherConditionNameMapper,
+    private val nowDateProvider: (ZoneId) -> ZonedDateTime = { ZonedDateTime.now(it) },
+) {
 
     fun map(data: WeatherData, locationName: String): ForecastSuccessState {
-        val now = ZonedDateTime.now(data.temperature.data[0].time.zone)
+        val now = nowDateProvider(data.temperature.data[0].time.zone)
         val minTemperature = data.temperature.data.filter { it.time.dayOfYear == now.dayOfYear }
             .minBy { it.value }.value
         val maxTemperature = data.temperature.data.filter { it.time.dayOfYear == now.dayOfYear }
